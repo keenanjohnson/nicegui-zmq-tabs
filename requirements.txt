@@ -1,0 +1,3 @@
+matplotlib
+nicegui
+pyzmq >= 26.0
