@@ -23,7 +23,11 @@ async def read_loop() -> None:
             print(f'Received number {number}')
             line_plot.push([datetime.now()], [[number]])
 
-line_plot = ui.line_plot(n=1, limit=100, figsize=(10, 4))
+            # Save number in app.storage.general
+            app.storage.general['number'] = number
+
+ui.label().bind_text_from(app.storage.general, 'number', backward=lambda a: f'Latest Value: {a}')
+line_plot = ui.line_plot(n=1, limit=25, figsize=(10, 4))
 
 app.on_startup(read_loop)
 
